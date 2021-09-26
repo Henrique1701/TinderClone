@@ -20,9 +20,9 @@ class CombineVC: UIViewController {
 extension CombineVC {
     func addCards() {
         for item in 1...3 {
-            let cardView = UIView()
-            cardView.backgroundColor = item == 2 ? .blue : .red
-            cardView.frame = CGRect(x: 0, y: 0, width: 200, height: 300)
+            let cardView = CombineCardView()
+            //rcardView.backgroundColor = item == 2 ? .blue : .red
+            cardView.frame = CGRect(x: 0, y: 0, width: view.bounds.width - 32, height: view.bounds.height * 0.7)
             
             cardView.center = view.center
             

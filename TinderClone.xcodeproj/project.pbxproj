@@ -14,6 +14,9 @@
 		BE7B578B26FFBF9600A30B02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE7B578A26FFBF9600A30B02 /* Assets.xcassets */; };
 		BE7B578E26FFBF9600A30B02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7B578C26FFBF9600A30B02 /* LaunchScreen.storyboard */; };
 		BE7B57972700B4B400A30B02 /* CombineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7B57962700B4B400A30B02 /* CombineVC.swift */; };
+		BE7B579A2700C24F00A30B02 /* CombineCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7B57992700C24F00A30B02 /* CombineCardView.swift */; };
+		BE7B579D2700C57800A30B02 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7B579C2700C57800A30B02 /* UIView.swift */; };
+		BE7B579F2700CEF700A30B02 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7B579E2700CEF700A30B02 /* UILabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		BE7B578D26FFBF9600A30B02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE7B578F26FFBF9600A30B02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE7B57962700B4B400A30B02 /* CombineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineVC.swift; sourceTree = "<group>"; };
+		BE7B57992700C24F00A30B02 /* CombineCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineCardView.swift; sourceTree = "<group>"; };
+		BE7B579C2700C57800A30B02 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		BE7B579E2700CEF700A30B02 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,8 @@
 		BE7B578026FFBF9400A30B02 /* TinderClone */ = {
 			isa = PBXGroup;
 			children = (
+				BE7B579B2700C56800A30B02 /* Lib */,
+				BE7B57982700C22900A30B02 /* View */,
 				BE7B57952700B49600A30B02 /* Controller */,
 				BE7B578126FFBF9400A30B02 /* AppDelegate.swift */,
 				BE7B578326FFBF9400A30B02 /* SceneDelegate.swift */,
@@ -76,6 +84,23 @@
 				BE7B57962700B4B400A30B02 /* CombineVC.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		BE7B57982700C22900A30B02 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE7B57992700C24F00A30B02 /* CombineCardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE7B579B2700C56800A30B02 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				BE7B579C2700C57800A30B02 /* UIView.swift */,
+				BE7B579E2700CEF700A30B02 /* UILabel.swift */,
+			);
+			path = Lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,7 +176,10 @@
 			files = (
 				BE7B57972700B4B400A30B02 /* CombineVC.swift in Sources */,
 				BE7B578626FFBF9400A30B02 /* ViewController.swift in Sources */,
+				BE7B579F2700CEF700A30B02 /* UILabel.swift in Sources */,
+				BE7B579A2700C24F00A30B02 /* CombineCardView.swift in Sources */,
 				BE7B578226FFBF9400A30B02 /* AppDelegate.swift in Sources */,
+				BE7B579D2700C57800A30B02 /* UIView.swift in Sources */,
 				BE7B578426FFBF9400A30B02 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
