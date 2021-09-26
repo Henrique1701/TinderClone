@@ -8,12 +8,20 @@
 import UIKit
 
 class CombineVC: UIViewController {
+    
+    var users: [User] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.systemGroupedBackground
         
         self.addCards()
+        self.searchUsers()
+    }
+    
+    func searchUsers() {
+        self.users = UserService.shared.searchUsers()
     }
 }
 
