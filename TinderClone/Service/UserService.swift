@@ -36,8 +36,6 @@ class UserService {
     ]
     
     func searchUsers() -> [User] {
-        let users: [User] = []
-        
-        return users
+        return self.users
     }
 }
