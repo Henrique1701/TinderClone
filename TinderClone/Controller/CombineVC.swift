@@ -20,18 +20,18 @@ class CombineVC: UIViewController {
 extension CombineVC {
     func addCards() {
         for item in 1...3 {
-            let redView = UIView()
-            redView.backgroundColor = item == 2 ? .blue : .red
-            redView.frame = CGRect(x: 0, y: 0, width: 200, height: 300)
+            let cardView = UIView()
+            cardView.backgroundColor = item == 2 ? .blue : .red
+            cardView.frame = CGRect(x: 0, y: 0, width: 200, height: 300)
             
-            redView.center = view.center
+            cardView.center = view.center
             
             let gesture = UIPanGestureRecognizer()
             gesture.addTarget(self, action: #selector(handlerCard))
             
-            redView.addGestureRecognizer(gesture)
+            cardView.addGestureRecognizer(gesture)
             
-            view.addSubview(redView)
+            view.addSubview(cardView)
         }
     }
 }
