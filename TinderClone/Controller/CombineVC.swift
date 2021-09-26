@@ -44,9 +44,14 @@ extension CombineVC {
             
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
             
+            let rotateAngle = point.x / view.bounds.width * 0.3
+            
+            card.transform = CGAffineTransform(rotationAngle: rotateAngle)
+            
             if gesture.state == .ended {
                 UIView.animate(withDuration: 0.2, animations: {
                     card.center = self.view.center
+                    card.transform = .identity
                 })
             }
         }
