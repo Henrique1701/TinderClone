@@ -23,6 +23,7 @@ extension UIImageView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: named)
         imageView.size(size: .init(width: 70, height: 70))
+        imageView.alpha = 0
         return imageView
     }
 }

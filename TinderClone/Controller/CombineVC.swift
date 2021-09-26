@@ -52,12 +52,20 @@ extension CombineVC {
 extension CombineVC {
     
     @objc func handlerCard (_ gesture: UIPanGestureRecognizer) {
-        if let card = gesture.view {
+        if let card = gesture.view as? CombineCardView {
             let point = gesture.translation(in: view)
             
             card.center = CGPoint(x: view.center.x + point.x, y: view.center.y + point.y)
             
             let rotateAngle = point.x / view.bounds.width * 0.3
+            
+            if point.x > 0 {
+                card.likeImageView.alpha = rotateAngle * 5
+                card.deslikeImageView.alpha = 0
+            } else {
+                card.deslikeImageView.alpha = -rotateAngle * 5
+                card.likeImageView.alpha = 0
+            }
             
             card.transform = CGAffineTransform(rotationAngle: rotateAngle)
             
@@ -65,6 +73,8 @@ extension CombineVC {
                 UIView.animate(withDuration: 0.2, animations: {
                     card.center = self.view.center
                     card.transform = .identity
+                    card.likeImageView.alpha = 0
+                    card.deslikeImageView.alpha = 0
                 })
             }
         }
