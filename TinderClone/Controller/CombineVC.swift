@@ -9,6 +9,10 @@ import UIKit
 
 class CombineVC: UIViewController {
     
+    var profileButton: UIButton = .iconHeader(named: "icone-perfil")
+    var chatButton: UIButton = .iconHeader(named: "icone-chat")
+    var logoButton: UIButton = .iconHeader(named: "icone-logo")
+    
     var deslikeButton: UIButton = .iconFooter(named: "icone-deslike")
     var superlikeButton: UIButton = .iconFooter(named: "icone-superlike")
     var likeButton: UIButton = .iconFooter(named: "icone-like")
@@ -20,6 +24,7 @@ class CombineVC: UIViewController {
         
         view.backgroundColor = UIColor.systemGroupedBackground
         
+        self.addHeader()
         self.addFooter()
         self.searchUsers()
     }
@@ -31,6 +36,24 @@ class CombineVC: UIViewController {
 }
 
 extension CombineVC {
+    func addHeader() {
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
+        let top: CGFloat = window?.safeAreaInsets.top ?? 44
+        
+        let stackView = UIStackView(arrangedSubviews: [profileButton, chatButton, logoButton])
+        stackView.distribution = .equalCentering
+        
+        view.addSubview(stackView)
+        
+        stackView.preencher(
+            top: view.topAnchor,
+            leading: view.leadingAnchor,
+            trailing: view.trailingAnchor,
+            bottom: nil,
+            padding: .init(top: top, left: 16, bottom: 0, right: 16)
+        )
+    }
+    
     func addFooter() {
         let stackView = UIStackView(arrangedSubviews: [UIView(), deslikeButton, superlikeButton, likeButton, UIView()])
         stackView.distribution = .equalCentering

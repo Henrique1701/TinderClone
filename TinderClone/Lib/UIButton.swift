@@ -9,6 +9,14 @@ import UIKit
 
 extension UIButton {
     
+    static func iconHeader(named: String) -> UIButton {
+        let button = UIButton()
+        button.size(size: CGSize(width: 32, height: 32))
+        button.setImage(UIImage(named: named), for: .normal)
+        
+        return button
+    }
+    
     static func iconFooter(named: String) -> UIButton {
         let button = UIButton()
         button.size(size: .init(width: 64, height: 64))
