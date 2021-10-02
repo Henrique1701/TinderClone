@@ -108,6 +108,12 @@ extension CombineVC {
             return user.id != card.tag
         })
     }
+    
+    func matchCheck (user: User) {
+        if user.match {
+            print("Wooow")
+        }
+    }
 }
 
 extension CombineVC {
@@ -197,6 +203,11 @@ extension CombineVC {
                             card.deslikeImageView.alpha = like == false ? 1 : 0
                             card.likeImageView.alpha = like == true ? 1 : 0
                         }, completion: { (_) in
+                            
+                            if like {
+                                self.matchCheck(user: user)
+                            }
+                            
                             self.removeCard(card: card)
                         })
                     }
