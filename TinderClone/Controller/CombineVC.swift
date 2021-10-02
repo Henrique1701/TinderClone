@@ -9,6 +9,7 @@ import UIKit
 
 enum Action {
     case like
+    case superlike
     case deslike
 }
 
@@ -70,7 +71,11 @@ extension CombineVC {
             trailing: view.trailingAnchor,
             bottom: view.bottomAnchor,
             padding: .init(top: 0, left: 16, bottom: 34, right: 16)
-            )
+        )
+        
+        deslikeButton.addTarget(self, action: #selector(deslikeClick), for: .touchUpInside)
+        superlikeButton.addTarget(self, action: #selector(superlikeClick), for: .touchUpInside)
+        likeButton.addTarget(self, action: #selector(likeClick), for: .touchUpInside)
     }
 }
 
@@ -137,6 +142,11 @@ extension CombineVC {
                     return
                 }
                 
+                if -point.y > self.view.bounds.maxY/2 {
+                    self.animateCard(rotationAngle: 0, action: .superlike)
+                    return
+                }
+                
                 UIView.animate(withDuration: 0.2, animations: {
                     card.center = self.view.center
                     card.transform = .identity
@@ -147,6 +157,18 @@ extension CombineVC {
         }
     }
     
+    @objc func deslikeClick() {
+        self.animateCard(rotationAngle: -0.4, action: .deslike )
+    }
+    
+    @objc func superlikeClick() {
+        self.animateCard(rotationAngle: 0, action: .superlike )
+    }
+    
+    @objc func likeClick() {
+        self.animateCard(rotationAngle: 0.4, action: .like )
+    }
+    
     func animateCard(rotationAngle: CGFloat, action: Action) {
         if let user = self.users.first {
             for view in self.view.subviews {
@@ -154,17 +176,26 @@ extension CombineVC {
                     if let card = view as? CombineCardView {
                         
                         let center: CGPoint
+                        var like: Bool
                         
                         switch action {
                         case .like:
                             center = CGPoint(x: card.center.x + self.view.bounds.width, y: card.center.y + 50)
+                            like = true
+                        case .superlike:
+                            center = CGPoint(x: card.center.x, y: card.center.y - self.view.bounds.height)
+                            like = true
                         case .deslike:
                             center = CGPoint(x: card.center.x - self.view.bounds.width, y: card.center.y + 50)
+                            like = false
                         }
                         
-                        UIView.animate(withDuration: 0.2, animations: {
+                        UIView.animate(withDuration: 0.4, animations: {
                             card.center = center
                             card.transform = CGAffineTransform(rotationAngle: rotationAngle)
+                            
+                            card.deslikeImageView.alpha = like == false ? 1 : 0
+                            card.likeImageView.alpha = like == true ? 1 : 0
                         }, completion: { (_) in
                             self.removeCard(card: card)
                         })
