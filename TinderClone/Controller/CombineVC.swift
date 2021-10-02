@@ -30,9 +30,12 @@ class CombineVC: UIViewController {
         
         view.backgroundColor = UIColor.systemGroupedBackground
         
+        let loading = Loading(frame: view.frame)
+        view.insertSubview(loading, at: 0)
+        
         self.addHeader()
         self.addFooter()
-        self.searchUsers()
+        //self.searchUsers()
     }
     
     func searchUsers() {
@@ -46,7 +49,7 @@ extension CombineVC {
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         let top: CGFloat = window?.safeAreaInsets.top ?? 44
         
-        let stackView = UIStackView(arrangedSubviews: [profileButton, chatButton, logoButton])
+        let stackView = UIStackView(arrangedSubviews: [profileButton, logoButton, chatButton])
         stackView.distribution = .equalCentering
         
         view.addSubview(stackView)
@@ -97,7 +100,7 @@ extension CombineVC {
             
             cardView.addGestureRecognizer(gesture)
             
-            view.insertSubview(cardView, at: 0)
+            view.insertSubview(cardView, at: 1)
         }
     }
     
