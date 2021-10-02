@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum Action {
+    case like
+    case deslike
+}
+
 class CombineVC: UIViewController {
     
     var profileButton: UIButton = .iconHeader(named: "icone-perfil")
@@ -72,7 +77,6 @@ extension CombineVC {
 extension CombineVC {
     
     func addCards() {
-        
         for user in users {
             let cardView = CombineCardView()
             cardView.frame = CGRect(
@@ -90,6 +94,14 @@ extension CombineVC {
             
             view.insertSubview(cardView, at: 0)
         }
+    }
+    
+    func removeCard(card: UIView) {
+        card.removeFromSuperview()
+        
+        self.users = self.users.filter({ (user) -> Bool in
+            return user.id != card.tag
+        })
     }
 }
 
@@ -114,12 +126,50 @@ extension CombineVC {
             card.transform = CGAffineTransform(rotationAngle: rotateAngle)
             
             if gesture.state == .ended {
+                
+                if card.center.x > self.view.bounds.width + 50 {
+                    self.animateCard(rotationAngle: rotateAngle, action: .like)
+                    return
+                }
+                
+                if card.center.x < -50 {
+                    self.animateCard(rotationAngle: rotateAngle, action: .deslike)
+                    return
+                }
+                
                 UIView.animate(withDuration: 0.2, animations: {
                     card.center = self.view.center
                     card.transform = .identity
                     card.likeImageView.alpha = 0
                     card.deslikeImageView.alpha = 0
                 })
+            }
+        }
+    }
+    
+    func animateCard(rotationAngle: CGFloat, action: Action) {
+        if let user = self.users.first {
+            for view in self.view.subviews {
+                if view.tag == user.id {
+                    if let card = view as? CombineCardView {
+                        
+                        let center: CGPoint
+                        
+                        switch action {
+                        case .like:
+                            center = CGPoint(x: card.center.x + self.view.bounds.width, y: card.center.y + 50)
+                        case .deslike:
+                            center = CGPoint(x: card.center.x - self.view.bounds.width, y: card.center.y + 50)
+                        }
+                        
+                        UIView.animate(withDuration: 0.2, animations: {
+                            card.center = center
+                            card.transform = CGAffineTransform(rotationAngle: rotationAngle)
+                        }, completion: { (_) in
+                            self.removeCard(card: card)
+                        })
+                    }
+                }
             }
         }
     }
