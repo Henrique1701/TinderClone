@@ -35,12 +35,20 @@ class CombineVC: UIViewController {
         
         self.addHeader()
         self.addFooter()
-        //self.searchUsers()
+        self.searchUsers()
     }
     
     func searchUsers() {
-        self.users = UserService.shared.searchUsers()
-        self.addCards()
+//        self.users = UserService.shared.searchUsers()
+//        self.addCards()
+        UserService.shared.searchUsers { users, Error in
+            if let users = users {
+                DispatchQueue.main.async {
+                    self.users = users
+                    self.addCards()
+                }
+            }
+        }
     }
 }
 
