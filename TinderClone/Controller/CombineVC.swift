@@ -123,6 +123,11 @@ extension CombineVC {
     func matchCheck (user: User) {
         if user.match {
             print("Wooow")
+            
+            let matchVC = MatchVC()
+            matchVC.modalPresentationStyle = .fullScreen
+            
+            self.present(matchVC, animated: true, completion: nil)
         }
     }
 }
